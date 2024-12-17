@@ -1,0 +1,47 @@
+/* Header */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1020;
+  background-color: #1c1c1c;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+
+  transition: background-color 0.3s ease; /* Smooth background transition */
+}
+
+.navbar {
+  background-color: #1c1c1c; /* Dark background */
+  position: sticky;
+  top: 0;
+  z-index: 1020;
+}
+
+.navbar a {
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.navbar a:hover {
+  color: #7a7aff; /* Hover effect for links */
+}
+
+.navbar-toggler-icon {
+  background-color: #fff;
+}
+
+.navbar-nav {
+  margin-left: auto;
+}
+
+.navbar-collapse {
+  justify-content: flex-end;
+}
+
+/* Smooth scrolling effect for anchor links */
+html {
+  scroll-behavior: smooth;
+}

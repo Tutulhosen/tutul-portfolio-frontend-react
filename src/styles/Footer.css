@@ -1,0 +1,26 @@
+/* Footer */
+.footer {
+    background: linear-gradient(135deg, #333, #555);
+    padding: 2rem 0;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+    color: #fff;
+  }
+  
+  .footer p {
+    font-size: 1.1rem;
+  }
+  
+  .footer a {
+    color: #7a7aff; /* Light blue link color */
+    text-decoration: none;
+  }
+  
+  .footer a:hover {
+    text-decoration: underline; /* Hover effect for links */
+  }
+  
+  /* Adding a hover effect for the footer */
+  .footer:hover {
+    background: linear-gradient(135deg, #444, #666);
+  }
+  

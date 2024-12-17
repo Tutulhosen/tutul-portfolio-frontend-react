@@ -1,0 +1,68 @@
+/* Projects Section Styling */
+#projects {
+  background: linear-gradient(135deg, #f4f7fc, #ffffff); /* Subtle gradient background */
+  padding: 60px 0;
+}
+
+/* Heading Styling */
+.projects-heading {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #333;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 50px;
+  text-align: center;
+}
+
+/* Project Card Styling */
+.project-card {
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Card Image */
+.card-img-top {
+  border-radius: 10px;
+  height: 200px; /* Consistent image height */
+  object-fit: cover;
+}
+
+/* Card Body */
+.card-body {
+  padding: 20px;
+}
+
+.card-title {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.card-text {
+  font-size: 1rem;
+  color: #777;
+  line-height: 1.5;
+}
+
+/* Responsive Design for Smaller Screens */
+@media (max-width: 768px) {
+  .projects-heading {
+    font-size: 2rem;
+  }
+
+  .card-title {
+    font-size: 1.2rem;
+  }
+
+  .card-text {
+    font-size: 0.9rem;
+  }
+}
