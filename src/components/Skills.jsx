@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { ClipLoader } from "react-spinners";
 import "../styles/Skills.css";
 
 function Skills() {
@@ -25,8 +26,13 @@ function Skills() {
   }, []);
 
   if (loading) {
-    return <p>Loading skills...</p>;
-  }
+      return (
+        <div className="preloader-container">
+          <ClipLoader color="#007bff" size={50} />
+          <p>Loading Skills...</p>
+        </div>
+      );
+    }
 
   return (
     <section id="skills" className="skills py-5">

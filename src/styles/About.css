@@ -55,3 +55,16 @@
     font-size: 1rem;
   }
 }
+
+/* Preloader Container Styling */
+.preloader-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; 
+  background-color: #f4f7fc; 
+  color: #007bff; 
+  font-size: 1.2rem;
+  text-align: center;
+}

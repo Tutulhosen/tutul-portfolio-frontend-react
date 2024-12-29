@@ -1,6 +1,6 @@
 /* Projects Section Styling */
 #projects {
-  background: linear-gradient(135deg, #f4f7fc, #ffffff); /* Subtle gradient background */
+  background: linear-gradient(135deg, #f4f7fc, #ffffff);
   padding: 60px 0;
 }
 
@@ -17,6 +17,8 @@
 
 /* Project Card Styling */
 .project-card {
+  position: relative;
+  overflow: hidden;
   border: none;
   border-radius: 10px;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
@@ -31,38 +33,81 @@
 /* Card Image */
 .card-img-top {
   border-radius: 10px;
-  height: 200px; /* Consistent image height */
+  height: 200px;
   object-fit: cover;
+  transition: transform 0.3s ease;
 }
 
-/* Card Body */
-.card-body {
+.project-card:hover .card-img-top {
+  transform: scale(1.1);
+}
+
+/* Project Hover */
+.project-hover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%; /* Ensures the hover section covers the card */
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
   padding: 20px;
+  opacity: 0;
+  visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Align content at the top */
+  align-items: center;
+  text-align: center;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  overflow-y: auto; /* Enables scrolling for overflow content */
+  box-sizing: border-box; /* Includes padding in height calculation */
 }
 
-.card-title {
-  font-size: 1.4rem;
-  font-weight: bold;
-  color: #333;
+.project-card:hover .project-hover {
+  opacity: 1;
+  visibility: visible;
 }
 
-.card-text {
+/* Project Description */
+.project-description {
+  margin-bottom: 20px;
   font-size: 1rem;
-  color: #777;
   line-height: 1.5;
+  word-break: break-word; /* Prevent text overflow */
 }
 
-/* Responsive Design for Smaller Screens */
-@media (max-width: 768px) {
-  .projects-heading {
-    font-size: 2rem;
-  }
+/* Buttons inside Hover */
+.project-buttons .btn {
+  margin: 5px;
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 15px;
+  font-size: 0.9rem;
+  color: #fff;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  text-decoration: none;
+}
 
-  .card-title {
-    font-size: 1.2rem;
-  }
+.btn-icon i {
+  margin-right: 5px;
+}
 
-  .card-text {
-    font-size: 0.9rem;
-  }
+.project-buttons .btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Preloader Container Styling */
+.preloader-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; 
+  background-color: #f4f7fc; 
+  color: #007bff; 
+  font-size: 1.2rem;
+  text-align: center;
 }
