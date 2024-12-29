@@ -1,60 +1,73 @@
 /* Skills Section Styling */
 .skills {
-    background: linear-gradient(135deg, #e8f0f8, #f8f9fc);
-    color: #333;
-    padding: 60px 0;
-  }
-  
-  /* Heading Styling */
+  background: linear-gradient(135deg, #e8f0f8, #f8f9fc);
+  color: #333;
+  padding: 60px 0;
+}
+
+/* Heading Styling */
+.skills-heading {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #444;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 40px;
+}
+
+/* Skill Card Styling */
+.skill-card {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  padding: 20px;
+  text-align: center; /* Ensure the content is centered */
+}
+
+.skill-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Skill Image and Icon Styling */
+.skill-card img, .skill-card i {
+  display: block;
+  margin: 0 auto;
+  width: 60px; /* Fixed size for images/icons */
+  height: 60px; /* Fixed size for images/icons */
+  object-fit: contain; /* Ensures the image maintains its aspect ratio */
+}
+
+.skill-card i {
+  font-size: 3rem; /* Adjust icon size */
+}
+
+/* Skill Titles */
+.skill-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #555;
+  margin-top: 15px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
   .skills-heading {
-    font-size: 2.5rem;
-    font-weight: bold;
-    color: #444;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 40px;
+    font-size: 2rem;
   }
-  
-  /* Skill Card Styling */
+
+  .skill-title {
+    font-size: 1rem;
+  }
+
   .skill-card {
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    cursor: pointer;
+    padding: 15px;
   }
-  
-  .skill-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+
+  .skill-card img, .skill-card i {
+    width: 50px; /* Reduce size for smaller screens */
+    height: 50px;
   }
-  
-  /* Skill Images */
-  .skill-image {
-    height: 60px;
-    max-width: 100%;
-    object-fit: contain;
-  }
-  
-  /* Skill Names */
-  .skill-name {
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: #555;
-  }
-  
-  /* Responsive Design */
-  @media (max-width: 768px) {
-    .skills-heading {
-      font-size: 2rem;
-    }
-  
-    .skill-name {
-      font-size: 1rem;
-    }
-  
-    .skill-card {
-      padding: 20px;
-    }
-  }
-  
+}

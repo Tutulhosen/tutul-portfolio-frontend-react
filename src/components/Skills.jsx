@@ -1,50 +1,52 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/Skills.css";
 
-import phpImage from "../assets/images/php.png";
-import laravelImage from "../assets/images/laravel.svg";
-import ajaxImage from "../assets/images/ajax.webp";
-import jsImage from "../assets/images/js.png";
-import ciImage from "../assets/images/ci.png";
-import htmlImage from "../assets/images/html.png";
-import cssImage from "../assets/images/css.png";
-
 function Skills() {
+  const [skills, setSkills] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+ 
+    axios
+      .get("http://127.0.0.1:8000/api/skill")
+      .then((response) => {
+        if (response.data.success) {
+          setSkills(response.data.data);
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching skills data:", error);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading) {
+    return <p>Loading skills...</p>;
+  }
+
   return (
     <section id="skills" className="skills py-5">
-      <div className="container">
-        <h2 className="text-center mb-4 skills-heading">My Skills</h2>
-        <div className="row justify-content-center">
-          {/* Skill Cards */}
-          {[
-            { name: "PHP", img: phpImage },
-            { name: "MySQL", icon: "fas fa-database", color: "text-secondary" },
-            { name: "Laravel", img: laravelImage },
-            { name: "API Management", icon: "fas fa-network-wired", color: "text-warning" },
-            { name: "Ajax", img: ajaxImage },
-            { name: "Bootstrap", icon: "fab fa-bootstrap", color: "text-primary" },
-            { name: "Laravel OAuth SSO", icon: "fas fa-key", color: "text-success" },
-            { name: "Microservices", icon: "fas fa-microchip", color: "text-secondary" },
-            { name: "JavaScript", img: jsImage },
-            { name: "CodeIgniter", img: ciImage },
-            { name: "HTML", img: htmlImage },
-            { name: "CSS", img: cssImage },
-          ].map((skill, index) => (
-            <div key={index} className="col-md-3 col-sm-6 mb-4 text-center">
-              <div className="skill-card p-3">
-                {skill.img ? (
-                  <img
-                    src={skill.img}
-                    alt={skill.name}
-                    className="skill-image mb-3"
-                  />
+      <div className="container text-center">
+        <h2 className="skills-heading">My Skills</h2>
+        <div className="row mt-4">
+          {skills.map((skill) => (
+            <div key={skill.id} className="col-lg-3 col-md-4 col-sm-6 mb-4">
+              <div className="skill-card p-3 border rounded shadow-sm">
+              {skill.icon ? (
+                  <i className={skill.icon}></i>
                 ) : (
-                  <i
-                    className={`${skill.icon} fa-3x ${skill.color} mb-3`}
-                  ></i>
+                  <img
+                    src={skill.image}
+                    alt={skill.title}
+                    className="img-fluid mb-3"
+                  />
                 )}
-                <h5 className="skill-name">{skill.name}</h5>
+
+                <h5 className="skill-title">{skill.title}</h5>
               </div>
             </div>
           ))}
