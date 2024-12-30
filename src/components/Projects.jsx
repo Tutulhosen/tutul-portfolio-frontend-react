@@ -7,21 +7,40 @@ import "../styles/Projects.css";
 function Projects() {
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    axios
-      .get("http://127.0.0.1:8000/api/project")
-      .then((response) => {
-        if (response.data.success) {
-          setProjects(response.data.data);
+    const fetchProjectsData = async () => {
+      try {
+        // Login to get the token
+        const loginResponse = await axios.post("http://127.0.0.1:8000/api/login", {
+          email: "tutulhosen2022@gmail.com",
+          password: "12345678",
+        });
+
+        const token = loginResponse.data.token;
+
+        // Fetch projects data
+        const projectsResponse = await axios.get("http://127.0.0.1:8000/api/project", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        if (projectsResponse.data.success) {
+          setProjects(projectsResponse.data.data);
+        } else {
+          setError("Projects data not found.");
         }
-      })
-      .catch((error) => {
-        console.error("Error fetching projects data:", error);
-      })
-      .finally(() => {
+      } catch (error) {
+        setError("Failed to fetch projects data.");
+        console.error(error);
+      } finally {
         setLoading(false);
-      });
+      }
+    };
+
+    fetchProjectsData();
   }, []);
 
   if (loading) {
@@ -31,6 +50,10 @@ function Projects() {
         <p>Loading projects...</p>
       </div>
     );
+  }
+
+  if (error) {
+    return <p className="text-danger text-center">{error}</p>;
   }
 
   return (

@@ -7,32 +7,54 @@ import "../styles/Skills.css";
 function Skills() {
   const [skills, setSkills] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
- 
-    axios
-      .get("http://127.0.0.1:8000/api/skill")
-      .then((response) => {
-        if (response.data.success) {
-          setSkills(response.data.data);
+    const fetchSkillsData = async () => {
+      try {
+        // Login to get the token
+        const loginResponse = await axios.post("http://127.0.0.1:8000/api/login", {
+          email: "tutulhosen2022@gmail.com",
+          password: "12345678",
+        });
+
+        const token = loginResponse.data.token;
+
+        // Fetch skills data
+        const skillsResponse = await axios.get("http://127.0.0.1:8000/api/skill", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        if (skillsResponse.data.success) {
+          setSkills(skillsResponse.data.data);
+        } else {
+          setError("Skills data not found.");
         }
-      })
-      .catch((error) => {
-        console.error("Error fetching skills data:", error);
-      })
-      .finally(() => {
+      } catch (error) {
+        setError("Failed to fetch skills data.");
+        console.error(error);
+      } finally {
         setLoading(false);
-      });
+      }
+    };
+
+    fetchSkillsData();
   }, []);
 
   if (loading) {
-      return (
-        <div className="preloader-container">
-          <ClipLoader color="#007bff" size={50} />
-          <p>Loading Skills...</p>
-        </div>
-      );
-    }
+    return (
+      <div className="preloader-container">
+        <ClipLoader color="#007bff" size={50} />
+        <p>Loading Skills...</p>
+      </div>
+    );
+  }
+
+  if (error) {
+    return <p className="text-danger text-center">{error}</p>;
+  }
 
   return (
     <section id="skills" className="skills py-5">
@@ -42,7 +64,7 @@ function Skills() {
           {skills.map((skill) => (
             <div key={skill.id} className="col-lg-3 col-md-4 col-sm-6 mb-4">
               <div className="skill-card p-3 border rounded shadow-sm">
-              {skill.icon ? (
+                {skill.icon ? (
                   <i className={skill.icon}></i>
                 ) : (
                   <img
@@ -51,7 +73,6 @@ function Skills() {
                     className="img-fluid mb-3"
                   />
                 )}
-
                 <h5 className="skill-title">{skill.title}</h5>
               </div>
             </div>
