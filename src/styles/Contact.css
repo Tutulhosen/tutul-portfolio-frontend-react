@@ -71,4 +71,20 @@
       padding: 20px;
     }
   }
+
+  .required {
+    color: red;
+    font-weight: bold;
+  }
+  
+  .contact-form .form-label {
+    color: #333;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+  }
+  
+  .contact-form .form-label span.required {
+    margin-left: 4px;
+  }
   
