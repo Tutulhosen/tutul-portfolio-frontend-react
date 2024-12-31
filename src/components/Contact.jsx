@@ -28,7 +28,7 @@ function Contact() {
     setLoading(true);
 
     try {
-      const response = await axios.post("http://localhost:8000/api/contact", formData);
+      const response = await axios.post(`${import.meta.env.VITE_URL}/api/contact`, formData);
       toast.success("Your message has been sent successfully!");
       setFormData({
         name: "",

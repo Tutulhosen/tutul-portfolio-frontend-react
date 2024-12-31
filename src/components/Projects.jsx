@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import { fetchWithAuth } from "../helpers/apiHelper"; // Import the helper function
 import { ClipLoader } from "react-spinners";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/Projects.css";
@@ -12,23 +12,11 @@ function Projects() {
   useEffect(() => {
     const fetchProjectsData = async () => {
       try {
-        // Login to get the token
-        const loginResponse = await axios.post("http://127.0.0.1:8000/api/login", {
-          email: "tutulhosen2022@gmail.com",
-          password: "12345678",
-        });
+        // Fetch projects data using the fetchWithAuth function
+        const response = await fetchWithAuth(`${import.meta.env.VITE_URL}/api/project`);
 
-        const token = loginResponse.data.token;
-
-        // Fetch projects data
-        const projectsResponse = await axios.get("http://127.0.0.1:8000/api/project", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-
-        if (projectsResponse.data.success) {
-          setProjects(projectsResponse.data.data);
+        if (response.data.success) {
+          setProjects(response.data.data);
         } else {
           setError("Projects data not found.");
         }

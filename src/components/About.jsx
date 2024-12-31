@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import { fetchWithAuth } from "../helpers/apiHelper"; // Import the helper function
 import "bootstrap/dist/css/bootstrap.min.css";
 import { ClipLoader } from "react-spinners";
 import "../styles/About.css";
@@ -12,23 +12,10 @@ function About() {
   useEffect(() => {
     const fetchAboutData = async () => {
       try {
-        // Login to get the token
-        const loginResponse = await axios.post("http://127.0.0.1:8000/api/login", {
-          email: "tutulhosen2022@gmail.com",
-          password: "12345678",
-        });
+        const response = await fetchWithAuth(`${import.meta.env.VITE_URL}/api/about`);
 
-        const token = loginResponse.data.token;
-
-        // Fetch about data
-        const aboutResponse = await axios.get("http://127.0.0.1:8000/api/about", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-
-        if (aboutResponse.data.success) {
-          setAboutContent(aboutResponse.data.data.content);
+        if (response.data.success) {
+          setAboutContent(response.data.data.content);
         } else {
           setError("Data not found.");
         }

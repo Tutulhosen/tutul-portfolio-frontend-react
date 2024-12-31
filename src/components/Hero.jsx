@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import { fetchWithAuth } from "../helpers/apiHelper"; 
 import { ClipLoader } from "react-spinners";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/Hero.css";
@@ -15,22 +15,8 @@ function Hero() {
   useEffect(() => {
     const fetchHeroData = async () => {
       try {
-        // Login to get the token
-        const loginResponse = await axios.post("http://127.0.0.1:8000/api/login", {
-          email: "tutulhosen2022@gmail.com",
-          password: "12345678",
-        });
-
-        const token = loginResponse.data.token;
-
-        // Fetch hero data
-        const heroResponse = await axios.get("http://127.0.0.1:8000/api/hero", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-
-        setHeroData(heroResponse.data);
+        const response = await fetchWithAuth(`${import.meta.env.VITE_URL}/api/hero`);
+        setHeroData(response.data);
       } catch (error) {
         console.error("Error fetching hero data:", error);
       } finally {
@@ -82,7 +68,7 @@ function Hero() {
                 View Projects
               </a>
               <a
-                href={`http://127.0.0.1:8000/storage/${resume}`}
+                href={`${import.meta.env.VITE_URL}/storage/${resume}`}
                 download
                 className="btn btn-outline-light"
               >
@@ -95,7 +81,7 @@ function Hero() {
           <div className="col-lg-6 d-flex flex-column align-items-center py-4">
             {/* Image */}
             <img
-              src={`http://127.0.0.1:8000/storage/${profile_picture}`}
+              src={`${import.meta.env.VITE_URL}/storage/${profile_picture}`}
               alt="Hero"
               className="img-fluid mb-3"
               style={{
@@ -138,7 +124,6 @@ function Hero() {
                   <FaFacebook size={30} className="icon-bg" />
                 </a>
               )}
-              
               {whatsapp && (
                 <a
                   href={`https://wa.me/${whatsapp}`}
@@ -149,7 +134,6 @@ function Hero() {
                   <FaWhatsapp size={30} className="icon-bg" />
                 </a>
               )}
-
             </div>
           </div>
         </div>

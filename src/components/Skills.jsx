@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import { fetchWithAuth } from "../helpers/apiHelper"; // Import the helper function
 import "bootstrap/dist/css/bootstrap.min.css";
 import { ClipLoader } from "react-spinners";
 import "../styles/Skills.css";
@@ -12,23 +12,11 @@ function Skills() {
   useEffect(() => {
     const fetchSkillsData = async () => {
       try {
-        // Login to get the token
-        const loginResponse = await axios.post("http://127.0.0.1:8000/api/login", {
-          email: "tutulhosen2022@gmail.com",
-          password: "12345678",
-        });
+        // Use fetchWithAuth to fetch skills data
+        const response = await fetchWithAuth(`${import.meta.env.VITE_URL}/api/skill`);
 
-        const token = loginResponse.data.token;
-
-        // Fetch skills data
-        const skillsResponse = await axios.get("http://127.0.0.1:8000/api/skill", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-
-        if (skillsResponse.data.success) {
-          setSkills(skillsResponse.data.data);
+        if (response.data.success) {
+          setSkills(response.data.data);
         } else {
           setError("Skills data not found.");
         }
