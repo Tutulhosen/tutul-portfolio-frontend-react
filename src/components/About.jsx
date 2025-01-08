@@ -13,7 +13,7 @@ function About() {
     const fetchAboutData = async () => {
       try {
         const response = await fetchWithAuth(`${import.meta.env.VITE_URL}/api/about`);
-
+        
         if (response.data.success) {
           setAboutContent(response.data.data.content);
         } else {

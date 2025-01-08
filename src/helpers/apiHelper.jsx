@@ -6,8 +6,8 @@ export const fetchWithAuth = async (url, method = "GET", data = null) => {
 
   if (!token) {
     const loginResponse = await axios.post(`${import.meta.env.VITE_URL}/api/login`, {
-      email: "tutulhosen2022@gmail.com",
-      password: "12345678",
+      email: "tutulapi2025@gmail.com",
+      password: "TutulHosen",
     });
 
     token = loginResponse.data.token;

@@ -7,7 +7,7 @@ function Footer() {
     <footer className="footer py-3 text-center text-white">
       <p className="mb-0">
         &copy; 2024{' '}
-        <span style={{ color: '#7a7aff' }}>Md Tutul</span>. All Rights Reserved.
+        <a href="https://tutulhosen.com/" target='_blank'><span style={{ color: '#7a7aff' }}>Md Tutul</span></a>. All Rights Reserved.
       </p>
     </footer>
   );

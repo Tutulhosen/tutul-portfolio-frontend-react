@@ -86,7 +86,7 @@ function Projects() {
                           rel="noopener noreferrer"
                           className="btn btn-dark btn-icon"
                         >
-                          <i className="fab fa-github"></i> GitHub
+                          <i className="fab fa-figma"></i> Figma
                         </a>
                       )}
                     </div>
